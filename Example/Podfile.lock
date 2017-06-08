@@ -1,0 +1,16 @@
+PODS:
+  - FlexibleSteppedProgressBar (0.1.0)
+
+DEPENDENCIES:
+  - FlexibleSteppedProgressBar (from `../`)
+
+EXTERNAL SOURCES:
+  FlexibleSteppedProgressBar:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FlexibleSteppedProgressBar: 72e677b92945988a9596cd0418d93fe27e367a24
+
+PODFILE CHECKSUM: 88dadbb79cb3d2ec4c9a450613d3821be090bbb1
+
+COCOAPODS: 1.0.1
