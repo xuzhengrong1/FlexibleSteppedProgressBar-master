@@ -30,6 +30,7 @@ import CoreGraphics
     
     //MARK: - Public properties
     
+    var distanceBetweenCircles:CGFloat = 0
     /// The number of displayed points in the component
     @IBInspectable open var numberOfPoints: Int = 3 {
         didSet {
@@ -621,6 +622,7 @@ import CoreGraphics
         if let first = centerPoints.first , nbPoint > 2 {
             let second = centerPoints[1]
             distanceBetweenCircles = second.x - first.x - 2 * aRadius
+            self.distanceBetweenCircles = distanceBetweenCircles;
         }
         
         let angle = aLineHeight / 2.0 / aRadius;
@@ -709,29 +711,26 @@ import CoreGraphics
     
     fileprivate func _maskPath(_ currentProgressCenterPoint: CGPoint) -> UIBezierPath {
         
-        let angle = self._progressLineHeight / 2.0 / self._progressRadius;
-        let xOffset = cos(angle) * self._progressRadius
+        let angle = lineHeight / 2.0 / self.radius;
+        let xOffset = cos(angle) * self.radius
         
         let maskPath = UIBezierPath()
         
         maskPath.move(to: CGPoint(x: 0.0, y: 0.0))
         
-        maskPath.addLine(to: CGPoint(x: currentProgressCenterPoint.x + xOffset, y: 0.0))
+        maskPath.addLine(to: CGPoint(x: currentProgressCenterPoint.x + xOffset + self.distanceBetweenCircles/2, y: 0.0))
         
-        maskPath.addLine(to: CGPoint(x: currentProgressCenterPoint.x + xOffset, y: currentProgressCenterPoint.y - self._progressLineHeight))
+//        maskPath.addLine(to: CGPoint(x: currentProgressCenterPoint.x + xOffset, y: currentProgressCenterPoint.y - self._progressLineHeight))
         
-        maskPath.addArc(withCenter: currentProgressCenterPoint, radius: self._progressRadius, startAngle: -angle, endAngle: angle, clockwise: true)
-        
-        maskPath.addLine(to: CGPoint(x: currentProgressCenterPoint.x + xOffset + 30  , y: 0.0))
-        
-        maskPath.addLine(to: CGPoint(x: currentProgressCenterPoint.x + xOffset + 30  , y: self.bounds.height))
+//        maskPath.addArc(withCenter: currentProgressCenterPoint, radius: self._progressRadius, startAngle: -angle, endAngle: angle, clockwise: true)
         
         
-        maskPath.addLine(to: CGPoint(x: currentProgressCenterPoint.x + xOffset   , y: self.bounds.height))
+        
+        maskPath.addLine(to: CGPoint(x: currentProgressCenterPoint.x + xOffset  + self.distanceBetweenCircles/2   , y: self.bounds.height))
         
         maskPath.addLine(to: CGPoint(x: 0.0, y: self.bounds.height)) //合起来
         
-        
+//        maskPath.stroke()
         maskPath.close()
         
         return maskPath

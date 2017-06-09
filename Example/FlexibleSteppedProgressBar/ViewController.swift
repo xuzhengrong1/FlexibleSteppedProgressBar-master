@@ -93,6 +93,7 @@ class ViewController: UIViewController, FlexibleSteppedProgressBarDelegate {
         progressBarWithDifferentDimensions.currentSelectedCenterColor = UIColor.brown //progressColor
         progressBarWithDifferentDimensions.stepTextColor = textColorHere
         progressBarWithDifferentDimensions.currentSelectedTextColor = progressColor
+        progressBarWithDifferentDimensions.currentIndex = 2
         progressBarWithDifferentDimensions.completedTillIndex = 0
     }
     
@@ -142,7 +143,7 @@ class ViewController: UIViewController, FlexibleSteppedProgressBarDelegate {
     
     func progressBar(_ progressBar: FlexibleSteppedProgressBar,
                      canSelectItemAtIndex index: Int) -> Bool {
-        return true
+        return false
     }
     
     func progressBar(_ progressBar: FlexibleSteppedProgressBar,
